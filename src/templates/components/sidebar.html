@@ -1,0 +1,83 @@
+{% load static %}
+
+<header style="z-index: 150;">
+    <div class="max-height d-flex flex-column justify-content-between">
+        <div class="top d-flex flex-column">
+            <button class="logo mt-3 mb-5 d-flex align-items-center sidebar">
+                <a href="/dashboard/">
+                    <img src=" {% static 'images/logo.png' %} " style="height: 18px; width: 28px; margin-left: 10px;" alt="logo" srcset="">
+                </a>
+                <p style="margin-left: 15px"> <b> Django PettyCash </b></p>
+            </button>
+            <button class="mb-3 logo d-flex align-items-center text-secondary sidebar">
+                <a href="/">
+                    <i class="far fa-grid-2 h5 mx-3"></i>
+                </a>
+                <a href="/">
+                    <p style="margin-left: 12px; padding-bottom: 12px">Dashboard</p>
+                </a>
+            </button>
+            <button class="mb-3 logo d-flex align-items-center text-secondary sidebar">
+                <a href="/location/">
+                    <i class="far fa-location-dot h5 mx-3"></i>
+                </a>
+                <a href="/location/">
+                    <p style="margin-left: 15px; padding-bottom: 12px">Location</p>
+                </a>
+            </button>
+            <button class="mb-3 logo d-flex align-items-center text-secondary sidebar">
+                <a href="/account/">
+                    <i class="far fa-wallet h5 mx-3"></i>
+                </a>
+                <a href="/account/">
+                    <p style="margin-left: 12px; padding-bottom: 12px">Account</p>
+                </a>
+            </button>
+            <button class="mb-3 logo d-flex align-items-center text-secondary sidebar">
+                <a href="/transaction/">
+                    <i class="far fa-note h5 mx-3"></i>
+                </a>
+                <a href="/transaction/">
+                    <p style="margin-left: 12px; padding-bottom: 12px">Transaction</p>
+                </a>
+            </button>
+            <button class="mb-3 logo d-flex align-items-center text-secondary sidebar">
+                <a href="/report/">
+                    <i class="fa-regular fa-cloud-arrow-down h5 mr-3" style="margin-left: 13px !important"></i>
+                </a>
+                <a href="/report/">
+                    <p style="margin-left: 6px; padding-bottom: 12px">Report</p>
+                </a>
+            </button>
+        </div>
+        <div class="bottom d-flex flex-column border-top">
+            <button class="logo mt-0 pt-0 mb-3"></button>
+            <button class="mb-1 logo d-flex align-items-center text-secondary sidebar">
+                <a href="/user/">
+                    <i class="far fa-circle-user h5 mx-3"></i> 
+                </a>
+                <a href="/user/">
+                    <p style="margin-left: 12px; padding-bottom: 12px">Profile</p>
+                </a>
+            </button>
+
+            <button class="mb-1 logo d-flex align-items-center text-secondary sidebar">
+                <a href="/notification/">
+                    <i class="far fa-bell h5 ml-3"></i><span style="margin-left: -8px; margin-top: -6px; position: absolute; font-weight: bold; font-size: 10px; width: 20px; height: 20px; padding-top: 6px" id="notifbadge" class="badge rounded-circle badge-danger mr-3 d-none">0</span>
+                </a>
+                <a href="/notification/">
+                    <p style="margin-left: 30px !important; padding-bottom: 12px">Notification</p>
+                </a>
+            </button>
+
+            <button id="user-logout" class="mb-1 logo d-flex align-items-center text-secondary sidebar">
+                <a href="/accounts/logout/">
+                    <i class="far fa-power-off h5 mx-3"></i>
+                </a>
+                <a href="/accounts/logout/">
+                    <p style="margin-left: 12px; padding-bottom: 12px">Log Out</p>
+                </a>
+            </button>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'user/profile.html' %}
+
+{% load static %}
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+<script src=" {% static 'js/module_user.js' %} "> </script>
+
+{% endblock %}

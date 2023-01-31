@@ -1,0 +1,67 @@
+<div class="main-content">
+    <div class="content mt-0">
+        <div class="card pt-3">
+            <div class="d-flex px-3 mt-1">
+                <h5 class="pt-2"><i class="fa-solid fa-grid-2 text-purple mr-3"></i>Dashboard</h5>
+            </div>
+            <div class="mt-3">
+                <div class="row p-3">
+                    <div class="col-md-3">
+                        <div class="card p-3 rounded">
+                            <i class="text-secondary">Total Income</i>
+                            <div class="text-center text-success mt-3">
+                                <h5>Rp. 20.000.000</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card p-3 rounded">
+                            <i class="text-secondary">Total Expense</i>
+                            <div class="text-center text-danger mt-3">
+                                <h5>Rp. 60.000.000</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card p-3 rounded">
+                            <i class="text-secondary">Total Opening Balance</i>
+                            <div class="text-center text-primary mt-3">
+                                <h5>Rp. 100.000.000</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card p-3 rounded">
+                            <i class="text-secondary">Total Closing Balance</i>
+                            <div class="text-center text-purple mt-3">
+                                <h5>Rp. 60.000.000</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3 p-3">
+                <div class="card p-3 rounded">
+                    <div id="chart_bar"></div>
+                </div>
+            </div>
+            <div class="mt-3">
+                <div class="row p-3">
+                    <div class="col-md-6">
+                        <div class="card p-3 rounded">
+                            <div id="chart_pie"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card p-3 rounded">
+                            <div id="chart_pie2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% load static %}
+<script src=" {% static 'js/module_dashboard.js' %} "> </script>

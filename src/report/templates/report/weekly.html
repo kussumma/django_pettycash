@@ -1,0 +1,86 @@
+
+<div class="card pt-3">
+    <div class="d-flex px-3 mt-1">
+        <h5 class="pt-2"><i class="fa-solid fa-cloud-arrow-down text-purple mr-3"></i>Weekly Report</h5>
+        <div class="bg-purple-low text-purple px-3 pt-3 pb-0 card rounded border-0 ml-auto"><p> Period: <span id="weekly_period"></span> </p></div>
+    </div>
+    <div class="mt-4">
+        <div class="d-flex px-3 mb-3">
+            <div class="input-group" style="width: 250px !important;">
+                <div class="input-group-prepend">
+                    <button class="btn iconfield"><i class="fa-regular fa-bars-filter"></i></button>
+                </div>
+                <select id="ft_weekly" class="form-control js-example-basic-single">
+                </select>
+            </div>
+            <div class="input-group ml-auto" style="width: 250px !important;">
+                <div class="input-group-prepend">
+                    <button class="btn iconfield"><i class="fa-regular fa-search"></i></button>
+                </div>
+                <input id="weekly_search" type="text" class="form-control inputfield" placeholder="Search ...">
+            </div>
+            <button id="download_weekly" class="btn btn-purple px-3 ml-3 rounded">
+                <i class="fa-solid fa-down-to-line mr-2"></i>  Download
+            </button>
+        </div>
+        <table id="tb_weekly" class="table display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <td>Date</td>
+                    <td>Amount</td>
+                    <td>Description</td>
+                    <td>Type</td>
+                    <td>Account</td>
+                    <td>Category</td>
+                    <td>User</td>
+                    <td>Location</td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="p-3 mt-3">
+            <div class="card px-3 pt-3 pb-1 rounded bg-purple-low border-0 font-weight-bold">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="d-flex">
+                            <div class="mr-auto">
+                                <p class="text-purple">Total Income</p>
+                            </div>
+                            <div class="ml-auto">
+                                <p class="text-purple" id="income_total_weekly">Rp. 0</p>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="mr-auto">
+                                <p class="text-purple">Total Expense</p>
+                            </div>
+                            <div class="ml-auto">
+                                <p class="text-purple" id="expense_total_weekly">Rp. 0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="d-flex">
+                            <div class="mr-auto">
+                                <p class="text-purple">Opening Balance</p>
+                            </div>
+                            <div class="ml-auto">
+                                <p class="text-purple" id="opening_balance_weekly">Rp. 0</p>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="mr-auto">
+                                <p class="text-purple">Closing Balance</p>
+                            </div>
+                            <div class="ml-auto">
+                                <p class="text-purple" id="closing_balance_weekly">Rp. 0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

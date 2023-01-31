@@ -1,0 +1,16 @@
+[
+    {
+        "model": "pettycash_account.PettyCashGroup",
+        "fields": {
+            "name": "Group 1",
+            "description": "Grup untuk toko-toko"
+        }
+    },
+    {
+        "model": "pettycash_account.PettyCashGroup",
+        "fields": {
+            "name": "Group 2",
+            "description": "Grup untuk gudang-gudang"
+        }
+    }
+]

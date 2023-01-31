@@ -1,0 +1,35 @@
+[
+    {
+        "model": "location.Location",
+        "pk": "123e4567-e89b-12d3-a456-426655440000",
+        "fields": {
+            "city": "Jakarta",
+            "area": "Mall Taman Anggrek",
+            "site": "Toko A",
+            "address": "Jl. Letjen S. Parman Kav. 21, Taman Anggrek",
+            "description": "Toko pakaian"
+        }
+    },
+    {
+        "model": "location.Location",
+        "pk": "456e7890-f123-12d3-a456-426655440000",
+        "fields": {
+            "city": "Bandung",
+            "area": "Ruko Kota Baru",
+            "site": "Gudang B",
+            "address": "Jl. Kota Baru, Bandung",
+            "description": "Gudang barang elektronik"
+        }
+    },
+    {
+        "model": "location.Location",
+        "pk": "8e6d2c0e-41a0-4e7d-b58e-6ec7050a2617",
+        "fields": {
+            "city": "Surabaya",
+            "area": "Mall Tunjungan",
+            "site": "Toko C",
+            "address": "Jl. Embong Malang, Surabaya",
+            "description": "Toko aksesoris"
+        }
+    }
+]

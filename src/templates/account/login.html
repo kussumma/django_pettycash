@@ -1,0 +1,59 @@
+
+{% load static %}
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Django PettyCash - Login</title>
+        <!-- Favicon-->
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+        <!-- Styles-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+        <link rel="stylesheet" href=" {% static 'fonts/fontawesome/css/all.min.css' %}">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+        
+        <link rel="stylesheet" href=" {% static 'css/styles.css' %}">        
+    </head>
+
+    <body>
+ 
+        <div class="app d-flex">
+            <div class="login-content d-flex">  
+                <div class="background my-auto py-5 mx-auto">
+                    <form  method="post">
+                        
+                        <div class="d-flex">
+                            <div class="logo mb-1 mx-auto"><img src=" {% static 'images/logo.png' %} " style="width: 70px; height: 50px;" alt="logo"></div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <div class="h5 mx-auto">Django PettyCash</div>
+                        </div>
+                        <div class="d-flex mb-4">
+                            <div class="h6 mx-auto">LOGIN</div>
+                        </div>
+
+                        {% csrf_token %}
+
+                        {{ form.as_p }}
+                        
+                        <button type="submit" class="btn btn-purple masuk">LOGIN </button>
+
+                        <a href="/accounts/google/login/" id="login_google" class="btn bg-purple-low text-purple google mt-3"> <i class="fa-brands fa-google mr-2"></i> LOGIN WITH GOOGLE </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+

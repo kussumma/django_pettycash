@@ -1,0 +1,54 @@
+<div class="popup-prospek" id="update-transaction" style="z-index: 150">
+    <div class="popup-prospek-box">
+        <div class="close mt-3 mr-2">
+            <button id="close_update_transaction"> 
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="title">Update Transaction</div>
+        <form  action="" enctype="multipart/form-data">
+            <input type="text" class="form-control specialform" id="eid" hidden>
+            <div class="grid">
+                <div>
+                    <label for="etrx_date">Date</label>
+                    <input id="etrx_date" type="date" class="form-control specialform">
+                </div>
+                <div>
+                    <label for="etrx_amount">Amount</label>
+                    <input id="etrx_amount" type="text" class="form-control specialform">
+                </div>
+                <div>
+                    <label for="etrx_type">Type</label>
+                    <select id="etrx_type" type="text" class="js-example-basic-single"></select>
+                </div>
+                <div>
+                    <label for="etrx_account">Account</label>
+                    <select id="etrx_account" type="text" class="js-example-basic-single"></select>
+                </div>
+                <div>
+                    <label for="etrx_category">Category</label>
+                    <select id="etrx_category" type="text" class="js-example-basic-single"></select>
+                </div>
+                <div>
+                    <label for="etrx_user">User</label>
+                    <select id="etrx_user" type="text" class="js-example-basic-single"></select>
+                </div>
+                <div>
+                    <label for="etrx_location">Location</label>
+                    <select id="etrx_location" type="text" class="js-example-basic-single"></select>
+                </div>
+                <div>
+                    <label for="etrx_description">Description </label>
+                    <textarea id="etrx_description" type="text" class="form-control specialform"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4">
+                    <button style="width:100%;" class="btn btn-purple py-2 mt-5" type="button" id="update_transaction">Update Transaction</button> 
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div> 

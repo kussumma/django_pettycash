@@ -1,0 +1,37 @@
+[
+    {
+        "model": "transaction.purchasecategory",
+        "fields": {
+            "name": "ATK Kantor",
+            "description": "Pembelian ATK untuk kantor"
+        }
+    },
+    {
+        "model": "transaction.purchasecategory",
+        "fields": {
+            "name": "Spare Part Kamera",
+            "description": "Pembelian spare part untuk kamera"
+        }
+    },
+    {
+        "model": "transaction.purchasecategory",
+        "fields": {
+            "name": "Reimburse Transport",
+            "description": "Reimburse transport untuk karyawan"
+        }
+    },
+    {
+        "model": "transaction.purchasecategory",
+        "fields": {
+            "name": "Reimburse Telekomunikasi",
+            "description": "Reimburse telekomunikasi untuk karyawan"
+        }
+    },
+    {
+        "model": "transaction.purchasecategory",
+        "fields": {
+            "name": "Pembelian barang fresh",
+            "description": "Pembelian barang segar untuk kantin"
+        }
+    }
+]
