@@ -41,7 +41,7 @@ $(document).ready(function () {
             var day = parseInt(moment().format('DD'));
 
             $.ajax({
-                url: 'http://127.0.0.1:8000/report/week-report/'+id+'/'+year+'/'+month+'/'+day+'/',
+                url: '/report/week-report/'+id+'/'+year+'/'+month+'/'+day+'/',
                 type: 'GET',
                 dataType: 'json',
                 success: function (data) {
@@ -69,7 +69,7 @@ $(document).ready(function () {
             var day = parseInt(moment().format('DD'));
 
             $.ajax({
-                url: 'http://127.0.0.1:8000/report/month-report/'+id+'/'+year+'/'+month+'/'+day+'/',
+                url: '/report/month-report/'+id+'/'+year+'/'+month+'/'+day+'/',
                 type: 'GET',
                 dataType: 'json',
                 success: function (data) {

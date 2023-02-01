@@ -1,6 +1,5 @@
 
 from django.views.generic import TemplateView, View
-from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 
