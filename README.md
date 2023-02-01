@@ -1,7 +1,7 @@
 # Django PettyCash
 
 <div align="center">
-    <img src="src/static/images/logo.png" width="250" height="150">
+    <img src="src/static/images/logo.png" width="150" height="100">
 </div>
 
 <br>
@@ -16,6 +16,12 @@
 ![python](https://badgen.net/badge/python/3.11/blue)
 ![django](https://badgen.net/badge/django/4.1/green)
 
+</div>
+
+<br>
+
+<div align="center">
+<img width="800" alt="SCR-20230201-du8" src="https://user-images.githubusercontent.com/47457477/215966321-4c1c652e-d003-41aa-a8db-e8e7c611e739.png">
 </div>
 
 <br>
