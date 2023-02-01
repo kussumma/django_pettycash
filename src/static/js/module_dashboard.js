@@ -1,4 +1,20 @@
 $(document).ready(function () {
+
+    var year = moment().format('YYYY');
+
+    // SUMMARIES
+    $.ajax({
+        url: '/dashboard/ajax/summary/'+year+'/',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            $('#summary_income').html( formatRupiah((data.total_income).toString(), 'Rp. ') );
+            $('#summary_expense').html( formatRupiah((data.total_expense).toString(), 'Rp. ') );
+            $('#summary_opening').html( formatRupiah((data.opening_balance).toString(), 'Rp. ') );
+            $('#summary_closing').html( formatRupiah((data.closing_balance).toString(), 'Rp. ') );
+        }
+    });
+
     var options_bar = {
         chart: {
             type: 'bar',
