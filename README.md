@@ -39,10 +39,10 @@ Current features:
 - authenticate with google
 - report creation in view and pdf (jsPDF)
 - user profile view
+- dashboard charts and analytics
 
 Upcoming Features:
 - user custom model
-- dashboard charts and analytics
 - realtime transaction notifications
 - scheduling transactions on the calendar
 - save report with google drive
@@ -56,3 +56,4 @@ Upcoming developments:
 - django-rest-framework implementation
 - implementing Google Drive Api
 - implementing whitenoise
+- dockerizing development
