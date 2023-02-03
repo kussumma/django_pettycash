@@ -362,13 +362,4 @@ $(document).ready(function () {
     });
     //END UPDATE TRANSACTION
 
-    // GET NOTIFICATION
-    var socket = new WebSocket('ws://' + window.location.host + '/notifications/');
-
-    socket.onmessage = function(e) {
-        var data = JSON.parse(e.data);
-        console.log(data);
-        // Tambahkan kode untuk menampilkan notifikasi
-    };
-
 });
