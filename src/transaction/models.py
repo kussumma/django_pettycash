@@ -1,5 +1,11 @@
 from django.db import models
 import uuid
+import json
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
+
 from pettycash_account.models import PettyCashAccount
 from django.contrib.auth.models import User
 from location.models import Location
@@ -25,3 +31,26 @@ class PettyCashTransaction(models.Model):
     
     def __str__(self):
         return f"{self.type} - {self.amount}"
+
+
+@receiver(post_save, sender=PettyCashTransaction)
+def notify_users(sender, instance, created, **kwargs):
+    if created:
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_send)(
+            "notifications", {
+                "type": "notify",
+                "message": f"New transaction has been added",
+                "data": json.dumps({
+                    "id": str(instance.id),
+                    "date": instance.date,
+                    "amount": instance.amount,
+                    "description": instance.description,
+                    "type": instance.type,
+                    "account": instance.account.name,
+                    "category": instance.category.name,
+                    "user": instance.user.username,
+                    "location": instance.location.site
+                })
+            }
+        )

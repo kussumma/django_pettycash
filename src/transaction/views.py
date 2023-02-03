@@ -78,7 +78,7 @@ class TransactionAjaxView(LoginRequiredMixin, View):
                     )
                     return JsonResponse({'status': 'success', 'message': 'Data berhasil ditambahkan'})
                 except Exception as e:
-                    return JsonResponse({'status': 'failed', 'message': 'Data gagal ditambahkan'})
+                    return JsonResponse({'status': 'failed', 'message': 'Data gagal ditambahkan, '+str(e)})
             else:
                 return JsonResponse({'status': 'failed', 'message': 'Data tidak boleh kosong'})
 

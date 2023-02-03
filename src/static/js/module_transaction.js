@@ -1,5 +1,5 @@
 
-$(document).ready(function() { 
+$(document).ready(function () {
     // datatable untuk transaksi
     var table = $('#tb_transaction').DataTable({
         dom: "<'row'<'col-sm-12'tr>>" + "<'px-3 py-3 border-top'<'row'<'col-sm-5'i><'col-sm-7'p>>>",
@@ -12,22 +12,24 @@ $(document).ready(function() {
             'type': "GET",
         },
         columns: [
-            { "data": function(){return ''} },
+            { "data": function () { return '' } },
             { "data": "date" },
-            { "data": "amount"},
+            { "data": "amount" },
             { "data": "description" },
             { "data": "type" },
             { "data": "account__name" },
             { "data": "category__name" },
             { "data": "user__username" },
             { "data": "location__site" },
-            { "data": function (item) {
-                return '<button id="btn_update_transaction" data="' + item.id + '" type="button" class="btn btn-primary mr-2 rounded"><i class="fa-regular fa-pen-to-square"></i></button>'+
-                '<button id="btn_delete_transaction" data-id="' + item.id + '" type="button" class="btn btn-danger rounded"><i class="fa-regular fa-trash"></i></button>';
-            } },
+            {
+                "data": function (item) {
+                    return '<button id="btn_update_transaction" data="' + item.id + '" type="button" class="btn btn-primary mr-2 rounded"><i class="fa-regular fa-pen-to-square"></i></button>' +
+                        '<button id="btn_delete_transaction" data-id="' + item.id + '" type="button" class="btn btn-danger rounded"><i class="fa-regular fa-trash"></i></button>';
+                }
+            },
         ],
-        fnRowCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-            $('td:eq(0)', nRow).html(iDisplayIndexFull +1);
+        fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+            $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
         },
         columnDefs: [
             {
@@ -59,18 +61,18 @@ $(document).ready(function() {
         }
     });
 
-    $('#transaction_search').on('keyup', function(){
+    $('#transaction_search').on('keyup', function () {
         table.search($(this).val()).draw();
     });
 
     //END DATATABLE TRANSACTION
 
     // GET ALL ACCOUNT
-    function getAllAccount () {
+    function getAllAccount() {
         $.ajax({
             url: "/account/ajax/get",
             type: 'GET',
-            success: function(response) {
+            success: function (response) {
                 if (response != null) {
                     var account = response;
                     var html = '';
@@ -87,11 +89,11 @@ $(document).ready(function() {
     }
 
     // GET ALL CATEGORY
-    function getAllCategory () {
+    function getAllCategory() {
         $.ajax({
             url: "/transaction/ajax/get/category",
             type: 'GET',
-            success: function(response) {
+            success: function (response) {
                 if (response.status == 'success') {
                     var category = response.data;
                     var html = '';
@@ -107,11 +109,11 @@ $(document).ready(function() {
         });
     }
 
-    function getAllUser(){
+    function getAllUser() {
         $.ajax({
             url: "/user/ajax/get",
             type: 'GET',
-            success: function(response) {
+            success: function (response) {
                 if (response != null) {
                     var user = response;
                     var html = '';
@@ -127,11 +129,11 @@ $(document).ready(function() {
         });
     }
 
-    function getAllLocation(){
+    function getAllLocation() {
         $.ajax({
             url: "/location/ajax/get",
             type: 'GET',
-            success: function(response) {
+            success: function (response) {
                 if (response != null) {
                     var location = response;
                     var html = '';
@@ -147,7 +149,7 @@ $(document).ready(function() {
         });
     }
 
-    function getAllType(){
+    function getAllType() {
         var type = [
             {
                 id: 'income',
@@ -168,7 +170,7 @@ $(document).ready(function() {
     }
 
     //ADD TRANSACTION
-    $('#add_transaction').on('click', function(){
+    $('#add_transaction').on('click', function () {
         openForm('add-transaction');
 
         getAllType();
@@ -176,15 +178,15 @@ $(document).ready(function() {
         getAllCategory();
         getAllUser();
         getAllLocation();
-        
-        $('#trx_amount').on('keyup', function(){
+
+        $('#trx_amount').on('keyup', function () {
             var val = $(this).val();
             $(this).val(formatRupiah(val));
         });
-    
+
     });
 
-    $('#close_transaction').on('click', function(){
+    $('#close_transaction').on('click', function () {
         closeForm('add-transaction');
     });
 
@@ -193,7 +195,7 @@ $(document).ready(function() {
 
     // function untuk tambah data
     function addTransaction() {
-        
+
         var data = {
             date: $('#trx_date').val(),
             amount: $('#trx_amount').val(),
@@ -210,17 +212,17 @@ $(document).ready(function() {
             url: '/transaction/ajax/post',
             type: 'POST',
             data: JSON.stringify(data),
-            beforeSend: function(xhr, settings) {
+            beforeSend: function (xhr, settings) {
                 xhr.setRequestHeader("X-CSRFToken", csrftoken);
             },
-            success: function(response) {
+            success: function (response) {
                 if (response.status == 'success') {
                     Swal.fire('Success', response.message, 'success').then(
-                        function() {
+                        function () {
                             closeForm('add-transaction');
                             $('#tb_transaction').DataTable().ajax.reload();
                         }
-                    ); 
+                    );
                 } else {
                     Swal.fire('Oopss!', response.message, 'error');
                 }
@@ -230,7 +232,7 @@ $(document).ready(function() {
     //END ADD ACCOUNT
 
     //DELETE ACCOUNT
-    $(document).on("click", "#btn_delete_account", function(){
+    $(document).on("click", "#btn_delete_account", function () {
 
         Swal.fire({
             title: 'Are you sure?',
@@ -251,16 +253,16 @@ $(document).ready(function() {
                     url: "/transaction/ajax/delete",
                     type: 'DELETE',
                     data: JSON.stringify(data),
-                    beforeSend: function(xhr, settings) {
+                    beforeSend: function (xhr, settings) {
                         xhr.setRequestHeader("X-CSRFToken", csrftoken);
                     },
-                    success: function(response) {
+                    success: function (response) {
                         if (response.status == 'success') {
                             Swal.fire('Success', response.message, 'success').then(
-                                function() {
+                                function () {
                                     $('#tb_transaction').DataTable().ajax.reload();
                                 }
-                            ); 
+                            );
                         } else {
                             Swal.fire('Oopss!', response.message, 'error');
                         }
@@ -274,30 +276,30 @@ $(document).ready(function() {
     //END DELETE ACCOUNT
 
     // GET DETAIL ACCOUNT
-    $('#close_update_transaction').on('click', function(){
+    $('#close_update_transaction').on('click', function () {
         closeForm('update-transaction');
     });
 
-    $(document).on('click','#btn_update_transaction', function(){
+    $(document).on('click', '#btn_update_transaction', function () {
         openForm('update-transaction');
-        
+
         getAllType();
         getAllAccount();
         getAllCategory();
         getAllUser();
         getAllLocation();
-        
-        $('#etrx_amount').on('keyup', function(){
+
+        $('#etrx_amount').on('keyup', function () {
             var val = $(this).val();
             $(this).val(formatRupiah(val));
         });
-        
+
         var id = $(this).attr('data');
 
         $.ajax({
             url: "/transaction/ajax/get/" + id,
             type: 'GET',
-            success: function(response) {
+            success: function (response) {
                 if (response.status == 'success') {
                     var trx = response.data;
                     $('#eid').val(trx.id);
@@ -311,17 +313,17 @@ $(document).ready(function() {
                     $('#etrx_user').val(trx.user).change();
                 } else {
                     Swal.fire('Oopss!', response.message, 'error').then(
-                        function() {
+                        function () {
                             closeForm('update-transaction');
                         }
-                    ); 
+                    );
                 }
             }
         });
     });
 
     // UPDATE TRANSACTION
-    $("#update_transaction").on("click", function(){
+    $("#update_transaction").on("click", function () {
 
         var data = {
             'id': $('#eid').val(),
@@ -341,17 +343,17 @@ $(document).ready(function() {
             url: "/transaction/ajax/update",
             type: 'PUT',
             data: JSON.stringify(data),
-            beforeSend: function(xhr, settings) {
+            beforeSend: function (xhr, settings) {
                 xhr.setRequestHeader("X-CSRFToken", csrftoken);
             },
-            success: function(response) {
+            success: function (response) {
                 if (response.status == 'success') {
                     Swal.fire('Success!', response.message, 'success').then(
-                        function() {
+                        function () {
                             closeForm('update-transaction');
                             $('#tb_transaction').DataTable().ajax.reload();
                         }
-                    ); 
+                    );
                 } else {
                     Swal.fire('Oopss!', response.message, 'error');
                 }
@@ -359,4 +361,14 @@ $(document).ready(function() {
         });
     });
     //END UPDATE TRANSACTION
+
+    // GET NOTIFICATION
+    var socket = new WebSocket('ws://' + window.location.host + '/notifications/');
+
+    socket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        console.log(data);
+        // Tambahkan kode untuk menampilkan notifikasi
+    };
+
 });
