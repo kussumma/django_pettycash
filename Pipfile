@@ -8,6 +8,8 @@ django = "*"
 python-dotenv = "*"
 django-allauth = "*"
 django-cors-headers = "*"
+channels = "*"
+daphne = "*"
 
 [dev-packages]
 
