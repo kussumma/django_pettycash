@@ -71,20 +71,8 @@ header:hover div .bottom #darkmode {
     border-radius: 8px;
 }
 
-.page-link {
-    border-color: #e1e6ee !important;
-}
-
-.bootstrap-select.custom .dropdown-menu, .dropdown-divider {
-    border-color: #e1e6ee !important;
-}
-
 .splide__pagination li {
     display: none !important;
-}
-
-.progress {
-    background-color: #cebcff !important;
 }
 
 .btn-danger {
@@ -117,15 +105,6 @@ header:hover div .bottom #darkmode {
 *:focus {
     outline: none !important;
     box-shadow: none !important;
-}
-
-td > input{
-    font-size: 12px !important;
-    width: 100% !important;
-}
-td > select{
-    font-size: 12px !important;
-    width: 100% !important;
 }
 
 .swal2-styled.swal2-confirm {
@@ -236,15 +215,6 @@ tbody tr td:last-child.dtfc-fixed-right, thead tr:first-child td:last-child.dtfc
     border-color: #e1e6ee !important;
 }
 
-.custom-select {
-    border-color: #e1e6ee !important;
-}
-
-.input-group-text {
-    background-color: white !important;
-}
-
-
 .fc .fc-toolbar.fc-header-toolbar {
     padding: 0px 9px 0px 9px !important;
 }
@@ -347,16 +317,6 @@ table.fc-scrollgrid-sync-table tbody tr td:first-child, table.fc-scrollgrid-sync
 .card-placeholder {
     background: #c3adff !important;
     border-radius: 8px !important;
-}
-
-.btn-softblue {
-    background-color: rgb(88, 156, 224);
-    color: white;
-}
-
-.btn-softgreen {
-    background-color: rgb(91, 190, 124);
-    color: white;
 }
 
 .swal2-close {
@@ -508,22 +468,6 @@ button.profileicon {
     color: #8f71dc;
 }
 
-input.passfield {
-    border: solid 1px #e1e6ee !important;
-    font-size: 13px !important;
-    height: 40px !important;
-    border-radius: 8px 0px 0px 8px !important;
-    border-right: none !important;
-}
-button.passicon {
-    border: solid 1px #e1e6ee !important;
-    font-size: 13px !important;
-    height: 40px !important;
-    border-radius: 0px 8px 8px 0px !important;
-    border-left: none !important;
-    cursor: default !important;
-}
-
 button.profileicon:hover {
     color: #5f40ad;
 }
@@ -633,12 +577,6 @@ button.specialform {
     border-left: inherit;
     border-radius: 0 8px 8px 0 !important;
     align-items: center !important;
-}
-
-textarea.txtarea {
-    border-color: #e1e6ee !important;
-    font-size: 12px !important;
-    border-radius: 8px !important;
 }
 
 textarea.specialform {
@@ -806,14 +744,6 @@ td {
     color: #7854de;
 }
 
-.w-100 {
-    width: 790px !important;
-    margin: 0 auto;
-}
-.w-100 img {
-    width: 100%;
-}
-
 .paging_simple_numbers a {
     color: #7854de;
     padding: 0 5px;
@@ -827,22 +757,6 @@ td {
 }
 .paging_simple_numbers span a:first-child {
     margin-left: 0;
-}
-
-.fixed-cal {
-    display: none;
-    background: transparent;
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    z-index: 1;
-    top: 0px;
-    left: 0px;
-}
-
-.filter {
-    position: relative;
-    z-index: 2;
 }
 
 .daterangepicker, .daterangepicker .drp-buttons, .daterangepicker.show-ranges.ltr .drp-calendar.left, 
@@ -950,50 +864,7 @@ header .logo p {
     width: 100%;
     text-align: left;
 }
-header .logo p .arrow-bottom {
-    position: absolute;
-    right: 15px;
-    top: 0;
-    width: 12px;
-    height: 12px;
-}
-header .logo p .arrow-bottom img {
-    width: 100% !important;
-    height: 100% !important;
-}
-header .logo .dropdown {
-    margin-left: 70px;
-    margin-top: -10px;
-    display: none;
-    opacity: 0;
-}
-header .logo .dropdown ul {
-    padding: 0;
-    margin: 0;
-    text-align: left;
-}
-header .logo .dropdown ul li {
-    margin-bottom: 8px;
-    white-space: pre;
-}
-header .logo .dropdown ul li:last-child {
-    margin-bottom: 0;
-}
-header .logo .dropdown ul li a {
-    font-size: 14px;
-    line-height: 21px;
-    color: #000;
-}
-header .profile {
-    height: 50px;
-}
-header .profile img {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    margin-left: 8px;
-    margin-right: 10px;
-}
+
 header:hover .max-height {
     width: 232px;
 }
