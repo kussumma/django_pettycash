@@ -219,39 +219,9 @@ LOGIN_REDIRECT_URL = '/'
 SOCIALACCOUNT_QUERY_EMAIL = True
 REDIRECT_URI = 'http://localhost:8000/accounts/google/login/callback/'
 
-CORS_ALLOWED_ORIGINS = (
-    'http://localhost:8000',
-    'http://127.0.0.1:8000',
-)
 
-CORS_ORIGIN_WHITELIST=(
-    'http://localhost:8000',
-    'https://google.com',
-)
-
-CORS_ALLOW_METHODS = [
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-]
-
-CORS_ALLOW_HEADERS = [
-    "accept",
-    "accept-encoding",
-    "authorization",
-    "content-type",
-    "dnt",
-    "origin",
-    "user-agent",
-    "x-csrftoken",
-    "x-requested-with",
-]
-
-SECURE_REFERRER_POLICY = "strict-origin"
-SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin"
+CORS_ORIGIN_ALLOW_ALL = True
+SECURE_CROSS_ORIGIN_OPENER_POLICY = None
 
 
 ASGI_APPLICATION = 'transaction.routing.application'
