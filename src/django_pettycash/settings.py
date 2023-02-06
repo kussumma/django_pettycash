@@ -217,7 +217,7 @@ SOCIALACCOUNT_LOGIN_ON_GET = True
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 SOCIALACCOUNT_QUERY_EMAIL = True
-REDIRECT_URI = 'http://localhost:8000/accounts/google/login/callback/'
+REDIRECT_URI = '/accounts/google/login/callback/'
 
 
 CORS_ORIGIN_ALLOW_ALL = True
