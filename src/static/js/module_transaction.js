@@ -21,6 +21,22 @@ $(document).ready(function () {
             { "data": "category__name" },
             { "data": "user__username" },
             { "data": "location__site" },
+            { "data": function(item){
+                if (item.receipt != null) {
+                    var binaryData = atob(item.receipt);
+                    var arrayBuffer = new ArrayBuffer(binaryData.length);
+                    var uint8Array = new Uint8Array(arrayBuffer);
+                    for (var i = 0; i < binaryData.length; i++) {
+                        uint8Array[i] = binaryData.charCodeAt(i);
+                    }
+                    var blob = new Blob([uint8Array], {type: "image/jpeg"});
+                    var imageUrl = URL.createObjectURL(blob);
+                } else {
+                    var imageUrl = '/static/images/no-image.jpg';
+                }
+
+                return "<img on style='width: 40px; height: 40px; border-radius: 8px;' src='" + imageUrl + "' id='viewImage' />";
+            }},
             {
                 "data": function (item) {
                     return '<button id="btn_update_transaction" data="' + item.id + '" type="button" class="btn btn-primary mr-2 rounded"><i class="fa-regular fa-pen-to-square"></i></button>' +
@@ -57,9 +73,25 @@ $(document).ready(function () {
                 } else {
                     $(this).find('td:eq(2)').addClass('text-success');
                 }
-            });
+            }); 
         }
     });
+
+    $(document).on('click', '#viewImage', viewImage);
+    $(document).on('click', '#current_trxreceipt', viewImage);
+
+    function viewImage() {
+        var link = $(this).attr('src');
+        Swal.fire({
+            imageUrl: link,
+            width: '40rem',
+            padding: '2rem',
+            imageAlt: 'receipt',
+            showConfirmButton: false,
+            showCloseButton: true,
+        });
+    }  
+ 
 
     $('#transaction_search').on('keyup', function () {
         table.search($(this).val()).draw();
@@ -196,26 +228,32 @@ $(document).ready(function () {
     // function untuk tambah data
     function addTransaction() {
 
-        var data = {
-            date: $('#trx_date').val(),
-            amount: $('#trx_amount').val(),
-            description: $('#trx_description').val(),
-            type: $('#trx_type').val(),
-            account: $('#trx_account').val(),
-            category: $('#trx_category').val(),
-            location: $('#trx_location').val(),
-            user: $('#trx_user').val(),
-        }
+        var receipt = $('#trx_receipt')[0].files[0];
+        var formData = new FormData();
+        formData.append('date', $('#trx_date').val());
+        formData.append('amount', $('#trx_amount').val());
+        formData.append('description', $('#trx_description').val());
+        formData.append('type', $('#trx_type').val());
+        formData.append('account', $('#trx_account').val());
+        formData.append('category', $('#trx_category').val());
+        formData.append('location', $('#trx_location').val());
+        formData.append('user', $('#trx_user').val());
+        formData.append('receipt', receipt);
 
         var csrftoken = getCookie('csrftoken');
         $.ajax({
             url: '/transaction/ajax/post',
             type: 'POST',
-            data: JSON.stringify(data),
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            mimeType: "multipart/form-data",
+            data: formData,
             beforeSend: function (xhr, settings) {
                 xhr.setRequestHeader("X-CSRFToken", csrftoken);
             },
             success: function (response) {
+                console.log(response);
                 if (response.status == 'success') {
                     Swal.fire('Success', response.message, 'success').then(
                         function () {
@@ -232,7 +270,7 @@ $(document).ready(function () {
     //END ADD ACCOUNT
 
     //DELETE ACCOUNT
-    $(document).on("click", "#btn_delete_account", function () {
+    $(document).on("click", "#btn_delete_transaction", function () {
 
         Swal.fire({
             title: 'Are you sure?',
@@ -311,6 +349,23 @@ $(document).ready(function () {
                     $('#etrx_category').val(trx.category).change();
                     $('#etrx_location').val(trx.location).change();
                     $('#etrx_user').val(trx.user).change();
+
+                    if (trx.receipt != null) {
+                        var binaryData = atob(trx.receipt);
+                        var arrayBuffer = new ArrayBuffer(binaryData.length);
+                        var uint8Array = new Uint8Array(arrayBuffer);
+                        for (var i = 0; i < binaryData.length; i++) {
+                            uint8Array[i] = binaryData.charCodeAt(i);
+                        }
+                        var blob = new Blob([uint8Array], {type: "image/jpeg"});
+                        var imageUrl = URL.createObjectURL(blob);
+
+                        $('#current_trxreceipt').attr('src', imageUrl);
+
+                    } else {
+                        $('#current_trxreceipt').html('No Receipt, please upload the new one.');
+                    }
+
                 } else {
                     Swal.fire('Oopss!', response.message, 'error').then(
                         function () {
@@ -325,24 +380,30 @@ $(document).ready(function () {
     // UPDATE TRANSACTION
     $("#update_transaction").on("click", function () {
 
-        var data = {
-            'id': $('#eid').val(),
-            'date': $('#etrx_date').val(),
-            'amount': $('#etrx_amount').val(),
-            'description': $('#etrx_description').val(),
-            'type': $('#etrx_type').val(),
-            'account': $('#etrx_account').val(),
-            'category': $('#etrx_category').val(),
-            'location': $('#etrx_location').val(),
-            'user': $('#etrx_user').val(),
-        }
+        var receipt = $('#etrx_receipt')[0].files[0];
+     
+        var formData = new FormData();
+        formData.append('id', $('#eid').val());
+        formData.append('date', $('#etrx_date').val());
+        formData.append('amount', $('#etrx_amount').val());
+        formData.append('description', $('#etrx_description').val());
+        formData.append('type', $('#etrx_type').val());
+        formData.append('account', $('#etrx_account').val());
+        formData.append('category', $('#etrx_category').val());
+        formData.append('location', $('#etrx_location').val());
+        formData.append('user', $('#etrx_user').val());
+        formData.append('receipt', receipt);
 
         var csrftoken = getCookie('csrftoken');
 
         $.ajax({
             url: "/transaction/ajax/update",
-            type: 'PUT',
-            data: JSON.stringify(data),
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            mimeType: "multipart/form-data",
+            data: formData,
             beforeSend: function (xhr, settings) {
                 xhr.setRequestHeader("X-CSRFToken", csrftoken);
             },

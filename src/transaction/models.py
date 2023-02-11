@@ -17,7 +17,7 @@ class PurchaseCategory(models.Model):
 
     def __str__(self):
         return self.name
-    
+
 class PettyCashTransaction(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     date = models.DateField()
@@ -28,6 +28,7 @@ class PettyCashTransaction(models.Model):
     category = models.ForeignKey(PurchaseCategory, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    receipt = models.CharField(max_length=255, null=True, blank=True)
     
     def __str__(self):
         return f"{self.type} - {self.amount}"

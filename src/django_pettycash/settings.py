@@ -230,3 +230,8 @@ CHANNEL_LAYERS = {
         'BACKEND': 'channels.layers.InMemoryChannelLayer',
     },
 }
+
+
+# mongodb grid filesystem
+MONGO_HOST = env('MONGO_HOST')
+MONGO_DB = env('MONGO_DB')

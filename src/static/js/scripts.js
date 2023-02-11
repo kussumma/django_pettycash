@@ -67,3 +67,13 @@ $('.sidebar a').each(function() {
 		$(this).removeClass('text-secondary');
 	}
 });
+
+// CUSTOM FILE INPUT
+$(document).on("change", ".custom-file-input", function(e) {
+	var fileName = e.target.files;
+	var fname = [];
+	for (i=0; i<fileName.length; i++){
+		fname.push(fileName[i].name)
+	}
+	$(this).siblings(".custom-file-label").addClass("selected").html(fname.join(', '));
+});
