@@ -34,12 +34,13 @@ Views in this application prioritize the implementation of class based views as 
 Current features:
 - location management
 - account management
-- transaction management
+- transaction management [updated]
 - authentication in the usual way
 - authenticate with google
 - report creation in view and pdf (jsPDF)
 - user profile view
 - dashboard charts and analytics
+- media file with mongodb gridfs [NEW]
 
 Upcoming Features:
 - user custom model
@@ -55,5 +56,5 @@ Upcoming developments:
 - implementing views with react
 - django-rest-framework implementation
 - implementing Google Drive Api
-- implementing whitenoise
+- implementing whitenoise for enhanced static and media file
 - dockerizing development
