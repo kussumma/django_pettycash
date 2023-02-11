@@ -10,6 +10,7 @@ django-allauth = "*"
 django-cors-headers = "*"
 channels = "*"
 daphne = "*"
+pymongo = "*"
 
 [dev-packages]
 
