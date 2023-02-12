@@ -25,6 +25,13 @@ $(document).ready(function () {
         xaxis: {
             categories: []
         },
+        yaxis: {
+            labels: {
+                formatter: function (value) {
+                    return 'Rp ' + value.toLocaleString('id-ID');
+                }
+            }
+        },
         title: {
             text: 'Income and Expense in 1 Year'
         },
@@ -54,7 +61,7 @@ $(document).ready(function () {
 
     var options_pie = {
         chart: {
-            type: 'pie',
+            type: 'donut',
             height: 200,
         },
         series: [],
@@ -63,8 +70,15 @@ $(document).ready(function () {
             text: 'Expense per Account in 1 Year'
         },
         dataLabels: {
-            enabled: false
+            enabled: false,
         },
+        tooltip: {
+            y: {
+                formatter: function (data) {
+                    return 'Rp ' + data.toLocaleString('id-ID');
+                  }
+            }
+        }
     }
     var chart_pie = new ApexCharts(document.querySelector("#chart_pie"), options_pie);
     chart_pie.render();
@@ -80,7 +94,7 @@ $(document).ready(function () {
 
     var options_pie2 = {
         chart: {
-            type: 'pie',
+            type: 'donut',
             height: 200,
         },
         series: [],
@@ -91,6 +105,13 @@ $(document).ready(function () {
         dataLabels: {
             enabled: false
         },
+        tooltip: {
+            y: {
+                formatter: function (data) {
+                    return 'Rp ' + data.toLocaleString('id-ID');
+                  }
+            }
+        }
     }
     var chart_pie2 = new ApexCharts(document.querySelector("#chart_pie2"), options_pie2);
     chart_pie2.render();
