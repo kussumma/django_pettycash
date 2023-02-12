@@ -15,7 +15,7 @@ class WeeklyReportAjaxView(LoginRequiredMixin, View):
 
     def get_week_transactions(self, id, week_start, week_end):
         transactions = PettyCashTransaction.objects.filter(
-            date__gte=week_start, date__lt=week_end, account_id=id
+            date__gte=week_start, date__lte=week_end, account_id=id
         ).order_by("date")
 
         return transactions
