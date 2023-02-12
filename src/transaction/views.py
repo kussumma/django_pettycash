@@ -80,7 +80,7 @@ class TransactionAjaxView(LoginRequiredMixin, View):
             user_id = request.POST.get('user')
             receipt = request.FILES.get('receipt')
 
-            if date and amount and description and type and account_id and category_id and user_id and location_id and receipt:
+            if date and amount and description and type and account_id and category_id and user_id and location_id:
                 try:
                     account = PettyCashAccount.objects.get(id=account_id)
                 except PettyCashAccount.DoesNotExist as e:
