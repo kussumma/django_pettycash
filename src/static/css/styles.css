@@ -600,6 +600,7 @@ input.inputfield {
     height: 40px !important;
     border-radius: 0px 8px 8px 0px !important;
     border-left: none !important;
+    background-color: white !important;
 }
 button.iconfield {
     border-color: #e1e6ee !important;
@@ -608,6 +609,7 @@ button.iconfield {
     border-radius: 8px 0px 0px 8px !important;
     border-right: none !important;
     color: #abb1b8 !important;
+    background-color: white !important;
 }
 
 .select2-container .select2-selection--single {
