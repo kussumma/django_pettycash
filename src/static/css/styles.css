@@ -285,6 +285,12 @@ table.fc-scrollgrid-sync-table tbody tr td:first-child, table.fc-scrollgrid-sync
     border-color: #e1e6ee !important;
 }
 
+.card-ext {
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)), url(../images/card-ext.svg) !important;
+    background-repeat: no-repeat !important;
+    background-position: right top !important;
+}
+
 .avatar {
     width: 140px;
     height: 140px;

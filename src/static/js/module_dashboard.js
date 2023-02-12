@@ -27,6 +27,17 @@ $(document).ready(function () {
         },
         title: {
             text: 'Income and Expense in 1 Year'
+        },
+        dataLabels: {
+            enabled: false
+        },
+        grid: {
+            show: true,
+            xaxis: {
+                lines: {
+                    show: false
+                }
+            },
         }
     }
     var chart_bar = new ApexCharts(document.querySelector("#chart_bar"), options_bar);
@@ -50,7 +61,10 @@ $(document).ready(function () {
         labels: [],
         title: {
             text: 'Expense per Account in 1 Year'
-        }
+        },
+        dataLabels: {
+            enabled: false
+        },
     }
     var chart_pie = new ApexCharts(document.querySelector("#chart_pie"), options_pie);
     chart_pie.render();
@@ -73,7 +87,10 @@ $(document).ready(function () {
         labels: [],
         title: {
             text: 'Expense per Store in 1 Year'
-        }
+        },
+        dataLabels: {
+            enabled: false
+        },
     }
     var chart_pie2 = new ApexCharts(document.querySelector("#chart_pie2"), options_pie2);
     chart_pie2.render();
