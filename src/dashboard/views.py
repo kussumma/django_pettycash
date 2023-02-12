@@ -4,6 +4,7 @@ from django.db.models import Sum
 from django.views import View
 from django.http import JsonResponse
 from django.db.models.functions import TruncMonth
+import calendar
 
 from pettycash_account.models import PettyCashAccount
 from transaction.models import PettyCashTransaction
@@ -43,10 +44,8 @@ class PettyCashSummaryView(View):
 
 class PettyCashChartDataView(View):
     def get(self, request, year):
-        months = [
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-        ]
+
+        months = [calendar.month_abbr[i] for i in range(1, 13)]
 
         total_income = PettyCashTransaction.objects.filter(
             type='income', date__year=year
