@@ -35,7 +35,7 @@ $(document).ready(function () {
                     var imageUrl = '/static/images/no-image.jpg';
                 }
 
-                return "<img on style='width: 40px; height: 40px; border-radius: 8px;' src='" + imageUrl + "' id='viewImage' />";
+                return "<img on style='width: 40px; height: 40px; border-radius: 8px; cursor: pointer;' src='" + imageUrl + "' id='viewImage' />";
             }},
             {
                 "data": function (item) {

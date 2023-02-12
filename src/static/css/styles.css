@@ -955,6 +955,11 @@ input:focus, input.form-control:focus, select:focus, select.form-control:focus  
     color: #7854de !important;
 }
 
+.swal2-image {
+    border-radius: 12px !important;
+    margin-bottom: 0px !important;
+}
+
 .swal2-popup {
     border: solid 1px #e1e6ee !important;
     border-radius: 8px !important;
