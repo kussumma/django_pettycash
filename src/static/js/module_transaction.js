@@ -253,7 +253,6 @@ $(document).ready(function () {
                 xhr.setRequestHeader("X-CSRFToken", csrftoken);
             },
             success: function (response) {
-                console.log(response);
                 if (response.status == 'success') {
                     Swal.fire('Success', response.message, 'success').then(
                         function () {
@@ -366,7 +365,6 @@ $(document).ready(function () {
                         var getUrl = window.location;
                         var baseUrl = getUrl .protocol + "//" + getUrl.host;
                         var imageUrl = baseUrl + '/static/images/no-image.jpg';
-                        console.log(imageUrl);
                         $('#current_trxreceipt').attr('src', imageUrl);
                         $('#current_trxreceipt').html('No Receipt, please upload the new one.');
                     }
