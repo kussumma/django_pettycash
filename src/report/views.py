@@ -2,6 +2,7 @@
 from django.views.generic import TemplateView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
+from django.db.models import Sum
 
 from datetime import datetime, timedelta
 import calendar
@@ -14,9 +15,14 @@ class ReportView(LoginRequiredMixin, TemplateView):
 class WeeklyReportAjaxView(LoginRequiredMixin, View):
 
     def get_week_transactions(self, id, week_start, week_end):
-        transactions = PettyCashTransaction.objects.filter(
-            date__gte=week_start, date__lte=week_end, account_id=id
-        ).order_by("date")
+        if id == '':
+            transactions = PettyCashTransaction.objects.filter(
+                date__gte=week_start, date__lte=week_end
+            ).order_by("date")
+        else:
+            transactions = PettyCashTransaction.objects.filter(
+                date__gte=week_start, date__lte=week_end, account_id=id
+            ).order_by("date")
 
         return transactions
     
@@ -33,7 +39,12 @@ class WeeklyReportAjaxView(LoginRequiredMixin, View):
     def generate_week_report(self, id, week_start, week_end):
         transactions = self.get_week_transactions(id, week_start, week_end)
         income_total, expense_total = self.get_week_totals(transactions)
-        opening_balance = transactions.first().account.balance
+
+        if id == '':
+            opening_balance = transactions.aggregate(Sum('account__balance'))['account__balance__sum'] or 0
+        else:
+            opening_balance = transactions.first().account.balance
+
         report = {
             "transactions": list(transactions.values("id", "date", "amount", "description", "type", "account__name", "category__name", "user__username", "location__site")),
             "transactions_count": transactions.count(),
@@ -42,11 +53,11 @@ class WeeklyReportAjaxView(LoginRequiredMixin, View):
             "opening_balance": opening_balance,
             "closing_balance": opening_balance + income_total - expense_total,
             "period": f"{week_start.strftime('%d %b %Y')} - {week_end.strftime('%d %b %Y')}",
-            "account": transactions.first().account.name,
         }
         return report
 
-    def get(self, request, id, year, month, day):
+    def get(self, request, year, month, day):
+        id = request.GET.get("id")
         date = datetime(year, month, day)
         week_start = date.date() - timedelta(days=date.weekday())
 
@@ -55,7 +66,6 @@ class WeeklyReportAjaxView(LoginRequiredMixin, View):
         try:
             report = self.generate_week_report(id, week_start, week_end)
             return JsonResponse({'data': report, 'status': 'success'})
-
         except Exception as e:
             return JsonResponse({"status": 'Data not found'})
 
@@ -63,9 +73,14 @@ class WeeklyReportAjaxView(LoginRequiredMixin, View):
 class MonthlyReportAjaxView(LoginRequiredMixin, View):
 
     def get_month_transactions(self, id, month_start, month_end):
-        transactions = PettyCashTransaction.objects.filter(
-            date__gte=month_start, date__lte=month_end, account_id=id
-        ).order_by("date")
+        if id == '':
+            transactions = PettyCashTransaction.objects.filter(
+                date__gte=month_start, date__lte=month_end
+            ).order_by("date")
+        else:
+            transactions = PettyCashTransaction.objects.filter(
+                date__gte=month_start, date__lte=month_end, account_id=id
+            ).order_by("date")
 
         return transactions
     
@@ -82,7 +97,12 @@ class MonthlyReportAjaxView(LoginRequiredMixin, View):
     def generate_month_report(self, id, month_start, month_end):
         transactions = self.get_month_transactions(id, month_start, month_end)
         income_total, expense_total = self.get_month_totals(transactions)
-        opening_balance = transactions.first().account.balance
+
+        if id == '':
+            opening_balance = transactions.aggregate(Sum('account__balance'))['account__balance__sum'] or 0
+        else:
+            opening_balance = transactions.first().account.balance
+
         report = {
             "transactions": list(transactions.values("id", "date", "amount", "description", "type", "account__name", "category__name", "user__username", "location__site")),
             "transactions_count": transactions.count(),
@@ -91,19 +111,16 @@ class MonthlyReportAjaxView(LoginRequiredMixin, View):
             "opening_balance": opening_balance,
             "closing_balance": opening_balance + income_total - expense_total,
             "period": f"{month_start.strftime('%d %b %Y')} - {month_end.strftime('%d %b %Y')}",
-            "account": transactions.first().account.name,
         }
         return report
 
-    def get(self, request, id, year, month, day):
+    def get(self, request, year, month, day):
+        id = request.GET.get("id")
         month_start = datetime(year, month, 1)
         month_end = datetime(year, month, calendar.monthrange(year, month)[1])
 
         try:
             report = self.generate_month_report(id, month_start, month_end)
             return JsonResponse({'data': report, 'status': 'success'})
-
         except Exception as e:
             return JsonResponse({"status": 'Data not found'})
-
-

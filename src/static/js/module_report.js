@@ -18,7 +18,7 @@ $(document).ready(function () {
             if (response != null) {
                 var account = response;
                 var html = '';
-                html += '<option value="">Select Account</option>';
+                html += '<option value="">All Account</option>';
                 for (var i = 0; i < account.length; i++) {
                     html += '<option value="' + account[i].id + '">' + account[i].name + '</option>';
                 }
@@ -30,63 +30,73 @@ $(document).ready(function () {
         }
     });
 
-    weekly_datatable();
-    monthly_datatable();
+    weekly_data(id=null);
+    monthly_data(id=null);
+
+    function weekly_data(id) {
+        var year = parseInt(moment().format('YYYY'));
+        var month = parseInt(moment().format('MM'));
+        var day = parseInt(moment().format('DD'));
+
+        $.ajax({
+            url: '/report/week-report/'+year+'/'+month+'/'+day+'/',
+            type: 'GET',
+            data: {
+                'id': id,
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data.status == 'success') {
+                    $('#download_weekly').click(function () {
+                        // Proses download PDF
+                        generatePDF(data.data);
+                    });
+
+                    $('#tb_weekly').DataTable().destroy();
+                    weekly_datatable(data.data);
+                }else{
+                    Swal.fire('Oopss!', data.status, 'error');
+                }
+            }
+        });
+    }
 
     $('#ft_weekly').change(function () {
         var id = $(this).val();
-        if (id != '') {
-            var year = parseInt(moment().format('YYYY'));
-            var month = parseInt(moment().format('MM'));
-            var day = parseInt(moment().format('DD'));
-
-            $.ajax({
-                url: '/report/week-report/'+id+'/'+year+'/'+month+'/'+day+'/',
-                type: 'GET',
-                dataType: 'json',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        $('#download_weekly').click(function () {
-                            // Proses download PDF
-                            generatePDF(data.data);
-                        });
-
-                        $('#tb_weekly').DataTable().destroy();
-                        weekly_datatable(data.data);
-                    }else{
-                        Swal.fire('Oopss!', data.status, 'error');
-                    }
-                }
-            });
-        }
+        weekly_data(id);
     });
+
+    function monthly_data(id) {
+        var year = parseInt(moment().format('YYYY'));
+        var month = parseInt(moment().format('MM'));
+        var day = parseInt(moment().format('DD'));
+
+        $.ajax({
+            url: '/report/month-report/'+year+'/'+month+'/'+day+'/',
+            type: 'GET',
+            data: {
+                'id': id,
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data.status == 'success') {
+                    $('#download_weekly').click(function () {
+                        // Proses download PDF
+                        generatePDF(data.data);
+                    });
+
+                    $('#tb_monthly').DataTable().destroy();
+                    monthly_datatable(data.data);
+                }else{
+                    Swal.fire('Oopss!', data.status, 'error');
+                }
+            }
+        });
+    }
 
     $('#ft_monthly').change(function () {
         var id = $(this).val();
-        if (id != '') {
-            var year = parseInt(moment().format('YYYY'));
-            var month = parseInt(moment().format('MM'));
-            var day = parseInt(moment().format('DD'));
-
-            $.ajax({
-                url: '/report/month-report/'+id+'/'+year+'/'+month+'/'+day+'/',
-                type: 'GET',
-                dataType: 'json',
-                success: function (data) {
-                    if (data.status == 'success') {
-                        $('#download_monthly').click(function () {
-                            // Proses download PDF
-                            generatePDF(data.data);
-                        });
-
-                        $('#tb_monthly').DataTable().destroy();
-                        monthly_datatable(data.data);
-                    }else{
-                        Swal.fire('Oopss!', data.status, 'error');
-                    }
-                }
-            });
-        }
+        monthly_data(id);
     });
 
     $('#download_weekly').click(function () {
@@ -226,7 +236,7 @@ $(document).ready(function () {
         $('#'+el).DataTable({
             dom: "<'row'<'col-sm-12'tr>>" + "<'px-3 py-3 border-top'<'row'<'col-sm-5'i><'col-sm-7'p>>>",
             language: {
-                "emptyTable": "No data available in table. Please select another account."
+                "emptyTable": "No data available in this period."
             },
             pagingType: "full_numbers",
         });
