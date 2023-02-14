@@ -413,6 +413,14 @@ small a:hover {
     background-color: #f53b7e !important;
 }
 
+.badge-danger {
+    background-color: #f53b7e !important;
+}
+
+.text-danger {
+    color: #f53b7e !important;
+}
+
 button.link {
     color: #8f97ab;
 }
