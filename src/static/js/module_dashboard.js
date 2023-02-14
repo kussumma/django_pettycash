@@ -100,7 +100,7 @@ $(document).ready(function () {
         series: [],
         labels: [],
         title: {
-            text: 'Expense per Store in 1 Year'
+            text: 'Expense per Site in 1 Year'
         },
         dataLabels: {
             enabled: false
