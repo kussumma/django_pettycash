@@ -41,8 +41,10 @@ class WeeklyReportAjaxView(LoginRequiredMixin, View):
         income_total, expense_total = self.get_week_totals(transactions)
 
         if id == '':
-            opening_balance = transactions.aggregate(Sum('account__balance'))['account__balance__sum'] or 0
+            account = 'All Accounts'
+            opening_balance = transactions.values('account').annotate(Sum('account__balance')).aggregate(Sum('account__balance'))['account__balance__sum'] or 0
         else:
+            account = transactions.first().account.name
             opening_balance = transactions.first().account.balance
 
         report = {
@@ -53,6 +55,7 @@ class WeeklyReportAjaxView(LoginRequiredMixin, View):
             "opening_balance": opening_balance,
             "closing_balance": opening_balance + income_total - expense_total,
             "period": f"{week_start.strftime('%d %b %Y')} - {week_end.strftime('%d %b %Y')}",
+            "account": account,
         }
         return report
 
@@ -99,8 +102,10 @@ class MonthlyReportAjaxView(LoginRequiredMixin, View):
         income_total, expense_total = self.get_month_totals(transactions)
 
         if id == '':
-            opening_balance = transactions.aggregate(Sum('account__balance'))['account__balance__sum'] or 0
+            account = 'All Accounts'
+            opening_balance = transactions.values('account').annotate(Sum('account__balance')).aggregate(Sum('account__balance'))['account__balance__sum'] or 0
         else:
+            account = transactions.first().account.name
             opening_balance = transactions.first().account.balance
 
         report = {
@@ -111,6 +116,7 @@ class MonthlyReportAjaxView(LoginRequiredMixin, View):
             "opening_balance": opening_balance,
             "closing_balance": opening_balance + income_total - expense_total,
             "period": f"{month_start.strftime('%d %b %Y')} - {month_end.strftime('%d %b %Y')}",
+            "account": account,
         }
         return report
 
@@ -123,4 +129,4 @@ class MonthlyReportAjaxView(LoginRequiredMixin, View):
             report = self.generate_month_report(id, month_start, month_end)
             return JsonResponse({'data': report, 'status': 'success'})
         except Exception as e:
-            return JsonResponse({"status": 'Data not found'})
+            return JsonResponse({"status": 'Data not found', "message": str(e)})

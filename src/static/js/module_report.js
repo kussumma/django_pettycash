@@ -1,8 +1,8 @@
 $(document).ready(function () {
 
     // PERIOD
-    var startOfWeek = moment().weekday(1).startOf('week').add(1, 'days');
-    var endOfWeek = moment(startOfWeek).endOf('week').add(1, 'days');
+    var startOfWeek = moment().startOf('isoweek');
+    var endOfWeek = moment().endOf('isoweek');
     $('#weekly_period').text(startOfWeek.format('DD MMMM YYYY') + ' - ' + endOfWeek.format('DD MMMM YYYY'));
 
     var startOfMonth = moment().startOf('month');
