@@ -100,25 +100,17 @@ WSGI_APPLICATION = 'django_pettycash.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 # Database
-if env('DEBUG') == False:
-    DATABASES = {
-        'default': {
-            'ENGINE': env('ENGINE'),
-            'NAME': env('NAME'),
-            'USER': env('USER'),
-            'PASSWORD': env('PASSWORD'),
-            'HOST': env('HOST'),
-            'PORT': env('PORT'),
-    
-        }
+
+DATABASES = {
+    'default': {
+        'ENGINE': env('ENGINE'),
+        'NAME': env('NAME'),
+        'USER': env('USER'),
+        'PASSWORD': env('PASSWORD'),
+        'HOST': env('HOST'),
+        'PORT': env('PORT'),
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
 
 
 # Password validation
