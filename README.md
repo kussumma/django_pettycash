@@ -26,35 +26,43 @@
 
 <br>
 
-Django PettyCash is an application for managing Petty Cash. This app is built with Django 4.1 with full use of Jquery AJAX on the frontend. The html template is created separately from the javascript module. This app also uses Django Allauth for its authentication management.
-Views in this application prioritize the implementation of class based views as much as possible, with returns in the form of json for ajax consumption.
-
 <hr>
 
 Current features:
-- location management
-- account management
-- transaction management [updated]
-- authentication in the usual way
-- authenticate with google
-- report creation in view and pdf (jsPDF)
-- user profile view
-- dashboard charts and analytics
-- media file with mongodb gridfs [NEW]
+- CRUD
+- Ajax
+- Basic Analytics
+- Basic and Google Auth
+- Async Notification
+- Media file with mongodb gridfs
 
-Upcoming Features:
-- user custom model
-- realtime transaction notifications
-- scheduling transactions on the calendar
-- save report with google drive
+<br>
 
-Features that still need to be improved:
-- making more detailed reports and better pdf views
-- adjustment of the model to better suit the needs of Petty Cash in general.
+How to install:
 
-Upcoming developments:
-- implementing views with react
-- django-rest-framework implementation
-- implementing Google Drive Api
-- implementing whitenoise for enhanced static and media file
-- dockerizing development
+run poetry and activate it shell
+```bash
+poetry install && poetry shell && cd src
+```
+
+copy and set env value
+```bash
+cp src/django_pettycash/.env.example src/django_pettycash/.env
+```
+
+migrate database
+```bash
+python manage.py migrate
+```
+
+load sample data
+```bash
+python manage.py loaddata */fixtures/*.json 
+```
+
+run app
+```bash
+python manage.py runserver
+```
+
+open localhost:8000 and you should see the login form
