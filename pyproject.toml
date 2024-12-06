@@ -8,13 +8,13 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-django = "^4.2.7"
+django = "^4.2.16"
 python-dotenv = "^1.0.0"
 django-allauth = "^0.54.0"
 django-cors-headers = "^3.14.0"
 channels = "^4.0.0"
 daphne = "^4.0.0"
-pymongo = "^4.3.3"
+pymongo = "^4.6.3"
 mysqlclient = "^2.1.1"
 
 
